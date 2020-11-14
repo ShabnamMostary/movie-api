@@ -2,6 +2,14 @@ const movies = require('../movies')
 const getAllMovies = (request, response) => {
   return response.send(movies)
 }
+
+const getMovie = (request, response) => {
+  const { input } = request.params
+
+  const foundMovie = movies.filter((movie) => movie.title.toUpperCase().includes(input.toUpperCase()))
+
+  return response.send(foundMovie)
+}
 const createNewMovie = (request, response) => {
   const {
     title, directors, releaseDate, rating, runTime, genres
@@ -19,4 +27,4 @@ const createNewMovie = (request, response) => {
   return response.status(201).send(newMovie)
 }
 
-module.exports = { getAllMovies, createNewMovie }
+module.exports = { getAllMovies, getMovie, createNewMovie }

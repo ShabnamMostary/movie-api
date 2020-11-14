@@ -1,9 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const { getAllMovies, createNewMovie } = require('./controller/movies')
+const { getAllMovies, getMovie, createNewMovie } = require('./controller/movies')
 const app = express()
 
 app.get('/movies', getAllMovies)
+app.get('/movies/:input', getMovie)
 app.post('/movies', bodyParser.json(), createNewMovie)
 
 app.listen(1337, () => {
