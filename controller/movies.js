@@ -5,10 +5,10 @@ const getAllMovies = (request, response) => {
 
 const getMovie = (request, response) => {
   const { input } = request.params
-  const foundMovie = []
+  let result = []
   const result1 = movies.filter((movie) => movie.title.toUpperCase().includes(input.toUpperCase()))
 
-  foundMovie.push(result1)
+
   const result2 = movies.filter((movie) => {
     for (let i = 0; i < movie.directors.length; i++) {
       if (movie.directors[i].toUpperCase().includes(input.toUpperCase())) {
@@ -19,7 +19,8 @@ const getMovie = (request, response) => {
     return false
   })
 
-  foundMovie.push(result2)
+  result = result1.concat(result2)
+  const foundMovie = result.filter((v, i, a) => a.indexOf(v) === i)
 
   return response.send(foundMovie)
 }
