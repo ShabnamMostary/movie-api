@@ -19,7 +19,7 @@ const getMovie = (request, response) => {
     return false // return false if input is not in the movie title or directors array
   })
 
-  if (foundMovie.length > 1) {
+  if (foundMovie.length >= 1) {
     return response.send(foundMovie)
   } else {
     return response.send('No movies found!')
